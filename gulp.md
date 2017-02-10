@@ -97,3 +97,77 @@ gulp.src('js/@(a|a1|b).js');
 gulp.src('**/@(a|a1|b).js');
 ```
 
+## gulp.pipe()
+gulp.src()方法返回的对象可以被pipe到别的插件中
+例如已经安装了gulp-htmlmin插件对象为<font color="#c7254e">`htmlmin`</font>
+```javascript
+//gulp-htmlmin插件如何使用，自行搜索
+var htmlmin = require('gulp-htmlmin');//html压缩
+gulp.task('html',function(){
+    var options = {
+        collapseWhitespace:true,
+        collapseBooleanAttributes:true,
+        removeComments:true,
+        removeEmptyAttributes:true,
+        removeScriptTypeAttributes:true,
+        removeStyleLinkTypeAttributes:true,
+        minifyJS:true,
+        minifyCSS:true
+    }
+    return gulp.src('app/**/*.html')
+               .pipe(htmlmin(options));
+});
+```
+
+## gulp.dest(path[,options])
+能被 pipe 进来，并且将会写文件。并且重新输出（emits）所有数据，因此你可以将它 pipe 到多个文件夹。如果某文件夹不存在，将会自动创建它。
+```javascript
+var htmlmin = require('gulp-htmlmin');//html压缩
+gulp.task('html',function(){
+    var options = {
+        collapseWhitespace:true,
+        collapseBooleanAttributes:true,
+        removeComments:true,
+        removeEmptyAttributes:true,
+        removeScriptTypeAttributes:true,
+        removeStyleLinkTypeAttributes:true,
+        minifyJS:true,
+        minifyCSS:true
+    }
+    return gulp.src('app/**/*.html')
+               .pipe(htmlmin(options))
+               .pipe(gulp.dest('dist'));
+});
+```
+
+## gulp.watch(glob[, opts], tasks)
+### globs 
+类型：<font color="#c7254e">`String`</font>或<font color="#c7254e">`Array`</font>
+一个 glob 字符串，或者一个包含多个 glob 字符串的数组，用来指定具体监控哪些文件的变动。
+```javascript
+var watcher = gulp.watch('js/**/*.js', ['uglify','reload']);
+watcher.on('change', function(event) {
+  console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+});
+```
+
+## gulp.task(name[, deps], fn)
+```javascript
+gulp.task('somename', function() {
+  // 做一些事
+});
+```
+
+## gulp常用插件
+gulp-htmlmin html压缩
+gulp-uglify js压缩
+gulp-jshint js语法检查
+gulp-clean-css css压缩
+gulp-rename 文件重命名
+gulp-imagemin 图片压缩 
+imagemin-pngquant 图片深度压缩
+gulp-concat 文件合并
+gulp-connect 服务
+gulp-proxy-middleware 跨域
+gulp-clean 清空多余文件
+
