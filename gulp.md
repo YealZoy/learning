@@ -159,15 +159,15 @@ gulp.task('somename', function() {
 ```
 
 ## gulp常用插件
-gulp-htmlmin html压缩
-gulp-uglify js压缩
-gulp-jshint js语法检查
-gulp-clean-css css压缩
-gulp-rename 文件重命名
-gulp-imagemin 图片压缩 
-imagemin-pngquant 图片深度压缩
-gulp-concat 文件合并
-gulp-connect 服务
-gulp-proxy-middleware 跨域
-gulp-clean 清空多余文件
++ gulp-htmlmin html压缩
++ gulp-uglify js压缩
++ gulp-jshint js语法检查
++ gulp-clean-css css压缩
++ gulp-rename 文件重命名
++ gulp-imagemin 图片压缩 
++ imagemin-pngquant 图片深度压缩
++ gulp-concat 文件合并
++ gulp-connect 服务
++ gulp-proxy-middleware 跨域
++ gulp-clean 清空多余文件
 
