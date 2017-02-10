@@ -170,8 +170,13 @@ origin 的 master分支。-u参数可以在推送的同时，将origin仓库的m
           ```
 + 步骤五：创建远程分支
           ```
-
+            $ git push origin work
           ```
++ 步骤六：打开自己的first-pr,确认work分支是否被创建，以及包含修改的代码
++ 步骤七：发送pull Request
+
+
+
 
 
          
