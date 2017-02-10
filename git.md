@@ -1,4 +1,4 @@
-﻿# 查看git所有的配置
+# 查看git所有的配置
 ```code
 $ git config --list
 ```
@@ -74,6 +74,12 @@ $ git commit(记述详细提交信息)
 记述完毕后，请保存并关闭编辑器，以 #（井号）标为注释的行不必删
 除。随后，刚才记述的提交信息就会被提交。
 
+# 退出vim
+在命令行中输入`$ git commit`时没有加入-m，会自动出来一个让填写提交说明的窗口
++ 步骤一：按键盘<font color='#c7254e'>`i`</font>,此时光标会在最上面
++ 步骤二：输入要提交的说明，按下<font color='#c7254e'>`Esc`</font>,然后输入<font color='#c7254e'>`:`</font>,光标跑到最下面
++ 步骤三：输入<font color='#c7254e'>`wq`</font>之后按回车即可，就回到原始的命令行界面
+
 # 中止提交
 如果在编辑器启动后想中止提交，请将提交信息留空并直接关闭编
 辑器，随后提交就会被中止
@@ -123,9 +129,52 @@ $ git checkout -
 ```
 
 # 合并分支
+我们假设 feature-A 已经实现完毕，想要将它合并到主干分
+支 master 中。首先切换到 master 分支。
+```
+$ git checkout master
+Switched to branch 'master'
+```
+然后合并 feature-A 分支。为了在历史记录中明确记录下本次分支合
+并，我们需要创建合并提交。因此，在合并时加上 --no-ff参数。
+```
+$ git merge --no-ff feature-A
+```
 
 
+# 添加远程仓库
+$ git remote add origin git@github.com:github-book/git-tutorial.git
 
+# 推送至远程仓库
+## 推送至master
+$ git push -u origin master
+像这样执行 git push命令，当前分支的内容就会被推送给远程仓库
+origin 的 master分支。-u参数可以在推送的同时，将origin仓库的master分
+支设置为本地仓库当前分支的 upstream（上游）。添加了这个参数，将来
+运行 git pull命令从远程仓库获取内容时，本地仓库的这个分支就可
+以直接从 origin 的 master 分支获取内容，省去了另外添加参数的麻烦。
+
+## 推送至master以外的分支
++ 步骤一：$ git checkout -b feature-D
++ 步骤二：$ git push -u origin feature-D
+
+# 发送pull Request
++ 步骤一：访问github用户的项目页面，点击<font color='#c7254e'>`fork`</font>创建自己的仓库（可以为仓库命名等）
++ 步骤二：`$ git clone https://github.com/YealZoy/first-pr.git
+` clone仓库
++ 步骤三：创建特性分支`$ git checkout -b work gh-pages`
++ 步骤四：提交修改
+          ```
+          $ git add index.html
+          $ git commit -m "index.html修改"
+          ```
++ 步骤五：创建远程分支
+          ```
+
+          ```
+
+
+         
 
 
 
