@@ -1,3 +1,6 @@
+内容如有错误望指正，点击fork,或留言
+
+
 # 查看git所有的配置
 ```code
 $ git config --list
