@@ -22,3 +22,66 @@ angular.module方法所接受的参数
         </tr>
     </tbody>
 </table>
+
+# 使用模块定义angualrJs组件
+angular.module方法返回一个Module对象
+Module对象的成员方法
+<table>
+    <thead>
+        <tr>
+            <td>名称</td>
+            <td>描述</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ainimation(name,factory)</td>
+            <td>支持动画</td>
+        </tr>
+        <tr>
+            <td>config(callback)</td>
+            <td>注册一个在模块加载时对该模块进行配置的函数</td>
+        </tr>
+        <tr>
+            <td>constant(key,value)</td>
+            <td>定义一个返回常量的服务</td>
+        </tr>
+        <tr>
+            <td>controller(name,constructor)</td>
+            <td>创建一个控制器</td>
+        </tr>
+        <tr>
+            <td>directive(name,factory)</td>
+            <td>创建一个指令，对标准HTML词汇进行扩展</td>
+        </tr>
+        <tr>
+            <td>factory(name,provider)</td>
+            <td>创建一个服务，详细信息以及本方法与provider和service方法的区别</td>
+        </tr>
+        <tr>
+            <td>filter(name,factory)</td>
+            <td>创建一个对显示用户的数据进行格式化的过滤器</td>
+        </tr>
+        <tr>
+            <td>provider(name,type)</td>
+            <td>详细信息以及本方法与service和factory方法的区别</td>
+        </tr>
+        <tr>
+            <td>name</td>
+            <td>返回模块名称</td>
+        </tr>
+        <tr>
+            <td>run(callBack)</td>
+            <td>注册一个在AngularJs加载完毕后用于对所有模块进行配置的函数</td>
+        </tr>
+        <tr>
+            <td>service(name,constructor)</td>
+            <td>创建一个服务</td>
+        </tr>
+        <tr>
+            <td>value(name,value)</td>
+            <td>定义一个返回一个常量的服务</td>
+        </tr>
+    </tbody>
+</table>
+
