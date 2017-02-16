@@ -85,3 +85,363 @@ Module对象的成员方法
     </tbody>
 </table>
 
+# 使用数据绑定指令
+数据绑定指令
+<table>
+    <thead>
+        <tr>
+            <td>名称</td>
+            <td>用作</td>
+            <td>描述</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ng-bind</td>
+            <td>属性，类</td>
+            <td>绑定一个HTML元素的innerText属性</td>
+        </tr>
+        <tr>
+            <td>ng-bing-html</td>
+            <td>属性，类</td>
+            <td>使用一个HTML元素的innerHTML属性创建数据绑定。</td>
+        </tr>
+        <tr>
+            <td>ng-bind-template</td>
+            <td>属性，类</td>
+            <td>与ng-bind指令类似，但是允许在属性值中指定多个模版表达式</td>
+        </tr>
+        <tr>
+            <td>ng-model</td>
+            <td>属性，类</td>
+            <td>创建一个双向数据绑定</td>
+        </tr>
+        <tr>
+            <td>ng-non-bindable</td>
+            <td>属性，类</td>
+            <td>声明一块不会执行数据绑定的区域</td>
+        </tr>
+    </tbody>
+</table>
+
+`<span ng-bind="todos.length"></span>`
+`<span class="ng-bind:todos.length"></span>`
+
+# 使用模板指令
+模板指令
+<table>
+    <thead>
+        <tr>
+            <td>名称</td>
+            <td>用作</td>
+            <td>描述</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ng-cloak</td>
+            <td>属性，类</td>
+            <td>使用一个css样式隐藏内联绑定表达式，在文档第一次加载时会短暂地可见</td>
+        </tr>
+        <tr>
+            <td>ng-include</td>
+            <td>元素，属性,类</td>
+            <td>向DOM中加载，处理和插入一段HTML</td>
+        </tr>
+        <tr>
+            <td>ng-repeat</td>
+            <td>属性，类</td>
+            <td>对数组中或对象某个属性中的每一个对象生成一个元素及其内容的若干新拷贝</td>
+        </tr>
+        <tr>
+            <td>ng-repeat-start</td>
+            <td>属性，类</td>
+            <td>表示含有多个顶层元素的重复区域开始部分</td>
+        </tr>
+        <tr>
+            <td>ng-repeat-end</td>
+            <td>属性，类</td>
+            <td>表示含有多个顶层元素的重复区域结束部分</td>
+        </tr>
+        <tr>
+            <td>ng-switch</td>
+            <td>元素，属性</td>
+            <td>根据数据绑定的值修改DOM中的元素</td>
+        </tr>
+    </tbody>
+</table> 
+
+## 使用内部变量工作
+```html
+<tr ng-repeat="item in todos">
+    <td>{{$index + 1}}</td>
+</tr>
+```
+
+内置的ng-repeat变量
+<table>
+    <thead>
+        <tr>
+            <td>变量</td>
+            <td>描述</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>$index</td>
+            <td>返回当前对象或属性的位置</td>
+        </tr>
+        <tr>
+            <td>$first</td>
+            <td>在当前对象为集合众的第一个对象时返回true</td>
+        </tr>
+        <tr>
+            <td>$middle</td>
+            <td>在当前对象既不是集合中的第一个也不是最后一个对象时返回true</td>
+        </tr>
+        <tr>
+            <td>$last</td>
+            <td>在当前对象集合中德最后一个对象时返回true</td>
+        </tr>
+        <tr>
+            <td>$even</td>
+            <td>对于集合中偶数编号的对象返回true</td>
+        </tr>
+        <tr>
+            <td>$odd</td>
+            <td>对于集合中奇数编号的对象返回true</td>
+        </tr>
+    </tbody>
+</table>
+
+```html
+<tr ng-repeat="item in todos" ng-class="$odd ? 'odd' : even">
+    <td>{{$index + 1}}</td>    
+</tr>
+```
+
+# 使用局部视图
+ng-include指令配置参数
+<table>
+    <thead>
+        <tr>
+            <td>名称</td>
+            <td>描述</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>src</td>
+            <td>指定要加载的内容url</td>
+        </tr>
+        <tr>
+            <td>onload</td>
+            <td>在指定一个在内容被加载时调用计算的表达式</td>
+        </tr>
+        <tr>
+            <td>autoscroll</td>
+            <td>指定在内容被加载时AngularJs是否应该滚动到部分试图所在的区域</td>
+        </tr>
+    </tbody>
+</table>
+
+```html
+<ng-include src="'table.html'"/>
+```
+
+# 使用元素指令
+元素指令
+<table>
+    <thead>
+        <tr>
+            <td>指令</td>
+            <td>作用</td>
+            <td>描述</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ng-if</td>
+            <td>属性</td>
+            <td>从DOM中添加和移除元素</td>
+        </tr>
+        <tr>
+            <td>ng-class</td>
+            <td>属性,类</td>
+            <td>为某个元素设置class属性</td>
+        </tr>
+        <tr>
+            <td>ng-class-even</td>
+            <td>属性,类</td>
+            <td>对由ng-repeat指令生成的偶数元素设置class属性</td>
+        </tr>
+        <tr>
+            <td>ng-class-odd</td>
+            <td>属性,类</td>
+            <td>对由ng-repeat指令生成的奇数元素设置class属性</td>
+        </tr>
+        <tr>
+            <td>ng-hide</td>
+            <td>属性,类</td>
+            <td>在DOM中显示和隐藏元素</td>
+        </tr>
+        <tr>
+            <td>ng-show</td>
+            <td>属性，类</td>
+            <td>在DOM中显示和隐藏元素</td>
+        </tr>
+        <tr>
+            <td>ng-style</td>
+            <td>属性，类</td>
+            <td>设置一个或多个css属性</td>
+        </tr>
+    </tbody>
+</table>
+
+# 监控表单的有效性
+<table>
+    <thead>
+        <tr>
+            <td>变量</td>
+            <td>描述</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>$pristine</td>
+            <td>如果用户没有与元素/表单产生交互，则返回true</td>
+        </tr>
+        <tr>
+            <td>$dirty</td>
+            <td>如果用户与元素/表单产生交互，则返回true</td>
+        </tr>
+        <tr>
+            <td>$valid</td>
+            <td>当元素/表单内容的校验结果为有效时返回true</td>
+        </tr>
+        <tr>
+            <td>$invalid</td>
+            <td>当元素/表单内容校验结果为无效时返回true</td>
+        </tr>
+        <tr>
+            <td>$error</td>
+            <td>提供校验错误的详情信息</td>
+        </tr>
+    </tbody>
+</table>
+
+angularjs校验中用到的类
+<table>
+    <thead>
+        <tr>
+            <td>变量</td>
+            <td>描述</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ng-pristine</td>
+            <td>用户曾经交互的元素被添加到这个类</td>
+        </tr>
+        <tr>
+            <td>ng-dirty</td>
+            <td>用户曾经交互过的元素被添加到这个类</td>
+        </tr>
+        <tr>
+            <td>ng-valid</td>
+            <td>校验结果为有效的元素在这个类中</td>
+        </tr>
+        <tr>
+            <td>ng-invalid</td>
+            <td>校验结果为无效的元素在这个类中<</td>
+        </tr>
+    </tbody>
+</table>
+
+# 使用input元素
+<table>
+    <thead>
+        <tr>
+            <td>名称</td>
+            <td>描述</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ng-model</td>
+            <td>用于指定双向绑定的模型</td>
+        </tr>
+        <tr>
+            <td>ng-change</td>
+            <td>用于指定一个表达式，该表达式再元素内容被改变时被计算求值</td>
+        </tr>
+        <tr>
+            <td>ng-minlength</td>
+            <td>设置一个合法元素所需的最小字符数</td>
+        </tr>
+        <tr>
+            <td>ng-maxlength</td>
+            <td>设置一个合法元素所需的最大字符数</td>
+        </tr>
+        <tr>
+            <td>ng-pattern</td>
+            <td>设置一个正则表达式，合法的元素内容必须匹配该正则表达式</td>
+        </tr>
+        <tr>
+            <td>ng-required</td>
+            <td>通过数据绑定设置required属性值</td>
+        </tr>
+    </tbody>
+</table>
+
+# 使用复选框
+当type属性为checkbox时可适用于input元素的属性
+<table>
+    <thead>
+        <tr>
+            <td>名称</td>
+            <td>描述</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ng-model</td>
+            <td>用于双向数据绑定</td>
+        </tr>
+        <tr>
+            <td>ng-change</td>
+            <td>用于指定一个表达式，该表达式元素内容被改变时被计算求值</td>
+        </tr>
+        <tr>
+            <td>ng-true-value</td>
+            <td>指定当元素被勾选中时所绑定的表达式的值</td>
+        </tr>
+        <tr>
+            <td>ng-false-value</td>
+            <td>指定当元素被取消勾选时所绑定的表达式的值</td>
+        </tr>
+    </tbody>
+</table>
+
+# 使用选择列表
+```html
+<script type="text/javascript">
+    angular.module('example',[])
+           .controller('defaultCtrl',function(){
+                $scope.todos = [
+                    {id:100,action:"get",complete:false},
+                    {id:200,action:"set",complete:false},
+                    {id:300,action:"eeet",complete:true},
+                ]
+           })
+</script>
+<select ng-option="item.action for item in todos">
+</select>
+```
+
+<标签\> for <项目\> in <数组\>
+
+<所选属性\> as <标签\> for <变量\> in <数组\>
+```html
+<select ng-option="item.id as item.action for item in todos"></select>
+```
