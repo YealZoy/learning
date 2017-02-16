@@ -1,0 +1,24 @@
+# angular.module
+angular.module方法所接受的参数
+<table>
+    <thead>
+        <tr>
+            <td>名称</td>
+            <td>描述</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>name</td>
+            <td>新模块的名称</td>
+        </tr>
+        <tr>
+            <td>requires</td>
+            <td>该模块所依赖的模块集合</td>
+        </tr>
+        <tr>
+            <td>config</td>
+            <td>该模块的配置，等效于调用module.config方法</td>
+        </tr>
+    </tbody>
+</table>
