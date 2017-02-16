@@ -445,3 +445,149 @@ angularjs校验中用到的类
 ```html
 <select ng-option="item.id as item.action for item in todos"></select>
 ```
+
+# 显式的更新作用域
+<table>
+    <thead>
+        <tr>
+            <td>方法</td>
+            <td>描述</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>$apply(expression)</td>
+            <td>向作用域应用变化</td>
+        </tr>
+        <tr>
+            <td>$watch(expression,handler)</td>
+            <td>注册一个处理函数，当expression表达式所引用的值变化时，该函数将会被通知到</td>
+        </tr>
+        <tr>
+            <td>$watchCollection(object,handler)</td>
+            <td>注册一个处理函数，当object表达式所引用的值变化时，该函数将会被通知到</td>
+        </tr>
+    </tbody>
+</table>
+
+# 过滤单个数据的值
+<table>
+    <thead>
+        <tr>
+            <td>名称</td>
+            <td>描述</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>currency</td>
+            <td>该过滤器对货币值进行格式化</td>
+        </tr>
+        <tr>
+            <td>date</td>
+            <td>该过滤器对日期值进行格式化</td>
+        </tr>
+        <tr>
+            <td>json</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>number</td>
+            <td>该过滤器从JSON字符串生成一个对象</td>
+        </tr>
+        <tr>
+            <td>uppercase<br/>lowercase</td>
+            <td>格式化为全大写或全小写</td>
+        </tr>
+    </tbody>
+</table>
+
+# 过滤集合
+## 限制项目数量
+```html
+<tr ng-repeat="p in products | limitTo : 5">
+    <td>{{$index + 1}}</td>
+</tr>
+```
+
+## 选取项
+```html
+<tr ng-repeat="p in products | filter : {category:'Fish'}">
+    <td>{{$index + 1}}</td>
+</tr>
+```
+
+## 对象项目排序
+```html
+<tr ng-repeat="p in products | orderBy : 'price'">
+    <td>{{$index + 1}}</td>
+</tr>
+```
+
+## 设置排序方向
+```html
+<tr ng-repeat="p in products | orderBy : '-price'">
+    <td>{{$index + 1}}</td>
+</tr>
+```
+
+## 使用多个谓语排序
+```html
+<tr ng-repeat="p in products | orderBy : ['name','-price']">
+    <td>{{$index + 1}}</td>
+</tr>
+```
+
+## 链式过滤器
+```html
+<tr ng-repeat="p in products | orderBy : ['name','-price'] | limitTo:5">
+    <td>{{$index + 1}}</td>
+</tr>
+```
+
+## 创建自定义过滤器
+过滤器是由Module.filter方法创建的，该方法接收两个参数：待创建的过滤器名称和一个工厂函数，用于创建执行实际工作的worker函数
+### 创建格式化数据值得过滤器
+```javascript
+angular.module('example',[])
+       .filter('labelCase',function(){
+            return function(value,reverse){
+                if(angular.isString(value)){
+                    var intermediate = reserve ? value.toUpperCase() : value.toLowerCase();
+                    return (reserve ? intermediate[0].toLowerCase() : intermediate[0].toUpperCase()) + intermediate.substr(1)
+                }else{
+                    return value;
+                }
+            }
+        })
+```
+
+### 创建一个集合过滤器
+```javascript
+angular.module('example',[])
+       .filter('skip',function(){
+            return function(data,count){
+                if(angular.isArray(data) && angular.isNumber(count)){
+                    if(count > data.length || count < 1){
+                        return data;
+                    }else{
+                        return data.slice(count);
+                    }
+                }else{
+                    return data;
+                }
+            }
+        })
+```
+
+### 在已有的过滤器上搭建新的过滤器
+```javascript
+angular.module('example',[])
+       .filter('take',function($filter){
+            return function(data,takecount,skipcount){
+                var skippedData = $filter("skip")(data,skipcount);
+                return $filter("limitTo")(skippedData,takecount)
+            }
+        })
+```
+
