@@ -7,11 +7,14 @@
     + angular2.X
         + [typescript](https://github.com/YealZoy/learning/blob/master/angular/angular2.X/typescript.md)
 
+
 + git
     + [git操作](https://github.com/YealZoy/learning/blob/master/git/git.md)
 
+
 + gulp
     + [gulp-api](https://github.com/YealZoy/learning/blob/master/gulp/gulp.md)
+
 
 + yeoman
     + [yeoman-操作](https://github.com/YealZoy/learning/blob/master/yeoman/yeoman.md)
