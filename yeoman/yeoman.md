@@ -56,6 +56,17 @@
         └───index.js
 ```
 
+把package.json文件里file属性值设置为所有的构造文件夹
+```javascript
+{
+  "files": [
+    "app",
+    "router"
+  ]
+}
+```
+
+
 # 继承generator
 结构写好了，需要开始写实际的逻辑代码   
 
@@ -65,6 +76,7 @@ Yeoman提供了基础生成器供你继承，这些基础生成器提供了很�
 var generators = require('yeoman-generator');
 module.exports = generators.Base.extend();
 ```
+
 如果你的生成器需要name参数（比如yo name:router foo中的foo），想将它赋给this.name的话：
 ```javascript
 var generators = require('yeoman-generator');
@@ -72,3 +84,41 @@ module.exports = generators.NamedBase.extend();
 ```
 
 > 上面两种方式都能用于创建app生成器或者子生成器，Base多用于app生成器，NamedBase多用于需要指定文件名的子生成器
+
+# 重写构造函数
+```javascript
+module.exports = class extends Generator {
+  // The name `constructor` is important here
+  constructor(args, opts) {
+    // Calling the super constructor is important so our generator is correctly set up
+    super(args, opts);
+
+    // Next, add your custom code
+    this.option('babel'); // This method adds support for a `--babel` flag
+  }
+};
+```
+
+# 添加自定义方法
+一般给原型添加的方法是按顺序执行的，还有一些特殊的方法会触发不同的执行顺序
+```javascript
+module.exports = class extends Generator {
+  method1() {
+    this.log('method 1 just ran');
+  }
+
+  method2() {
+    this.log('method 2 just ran');
+  }
+};
+```
+
+# 运行生成器
+到了这一步，已经拥有一个可以运行的生成器了。下一步就是检验生成器是否按自己的逻辑运行  
+由于是在本地开发生成器，在全局npm模块中并不存在，需要手动连接。进入`generator-name/`文件夹，运行：
+
+`npm link`
+
+这将自动安装工程依赖包，同时将本地文件连接进全局模块；运行完毕之后，你就可以调一批那个`yo name`并看到之前定义的`console.log`信息
+
+# 找到工程目录
