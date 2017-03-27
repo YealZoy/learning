@@ -238,17 +238,18 @@ this.prompt({
 + banner ：String to show on usage notes (this one is provided by default)
 
 ```javascript
-module.exports = generators.Base.extend({
+module.exports = class extends Generator {
   // note: arguments and options should be defined in the constructor.
-  constructor: function () {
-    generators.Base.apply(this, arguments);
- 
+  constructor(args, opts) {
+    super(args, opts);
+
     // This makes `appname` a required argument.
     this.argument('appname', { type: String, required: true });
-    // And you can then access it later on this way; e.g. CamelCased
-    this.appname = this._.camelize(this.appname);
+
+    // And you can then access it later; e.g.
+    this.log(this.options.appname);
   }
-});
+};
 ```
 
 ## 选项
@@ -265,14 +266,15 @@ module.exports = generators.Base.extend({
 + hide ：Boolean whether to hide from help
 
 ```javascript
-module.exports = generators.Base.extend({
+module.exports = class extends Generator {
   // note: arguments and options should be defined in the constructor.
-  constructor: function () {
-    generators.Base.apply(this, arguments);
- 
+  constructor(args, opts) {
+    super(args, opts);
+
     // This method adds support for a `--coffee` flag
     this.option('coffee');
-    // And you can then access it later on this way; e.g.
+
+    // And you can then access it later; e.g.
     this.scriptSuffix = (this.options.coffee ? ".coffee": ".js");
   }
 });
