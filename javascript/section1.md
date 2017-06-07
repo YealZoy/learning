@@ -293,5 +293,34 @@ var num2 = num1;
 
 num1中保存的值时5。当使用num1的值来初始化num2时，num2也保存了值5。但num2中的5与num1中的5是完全独立的，该值只是num1中的5一个副本。此后，两个变量可以参与任何操作而互不影响。  
 复制前的变量对象
+<table>
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>num1</td>
+        <td>5<br/>(Number类型)</td>
+    </tr>
+</table>
 
-
+————————————————————————————————————————————————
+复制后的变量对象
+<table>
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>num2</td>
+        <td>5<br/>(Number类型)</td>
+    </tr>
+    <tr>
+        <td>num1</td>
+        <td>5<br/>(Number类型)</td>
+    </tr>
+</table>
