@@ -295,12 +295,12 @@ num1中保存的值时5。当使用num1的值来初始化num2时，num2也保存
 复制前的变量对象
 <table>
     <tr>
-        <td></td>
-        <td></td>
+        <td>  </td>
+        <td>   </td>
     </tr>
     <tr>
-        <td></td>
-        <td></td>
+        <td>   </td>
+        <td>   </td>
     </tr>
     <tr>
         <td>num1</td>
@@ -312,8 +312,8 @@ num1中保存的值时5。当使用num1的值来初始化num2时，num2也保存
 复制后的变量对象
 <table>
     <tr>
-        <td></td>
-        <td></td>
+        <td>   </td>
+        <td>  </td>
     </tr>
     <tr>
         <td>num2</td>
