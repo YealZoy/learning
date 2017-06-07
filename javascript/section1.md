@@ -114,7 +114,7 @@
 + 第一个字符必须是一个字母，下划线 (_)或一个美元符($)
 + 其他字符可以是字母，下划线，美元符或数字
 
-# 关键字和保留字
+# 关键字
 <table>
     <tr>
         <td>break</td>
@@ -157,3 +157,141 @@
         <td colspan="2">try</td>
     </tr>
 </table>
+
+# 保留字
+<table>
+    <tr>
+        <td>abstract</td>
+        <td>enum</td>
+        <td>int</td>
+        <td>short</td>
+    </tr>
+    <tr>
+        <td>boolean</td>
+        <td>export</td>
+        <td>interface</td>
+        <td>static</td>
+    </tr>
+    <tr>
+        <td>byte</td>
+        <td>extends</td>
+        <td>long</td>
+        <td>super</td>
+    </tr>
+    <tr>
+        <td>char</td>
+        <td>final</td>
+        <td>native</td>
+        <td>synchronized</td>
+    </tr>
+    <tr>
+        <td>class</td>
+        <td>float</td>
+        <td>package</td>
+        <td>throws</td>
+    </tr>
+    <tr>
+        <td>const</td>
+        <td>goto</td>
+        <td>private</td>
+        <td>transient</td>
+    </tr>
+    <tr>
+        <td>debugger</td>
+        <td>implements</td>
+        <td>protected</td>
+        <td>volatile</td>
+    </tr>
+    <tr>
+        <td>double</td>
+        <td>import</td>
+        <td colspan="2">public</td>
+    </tr>
+</table>
+
+# 数据类型
+ECMAScript有5种简单数据类型(基本数据类型)：Undefined、Null、Boolean、Number、String,还有一种复杂数据类型Object
+
+# typeof操作符
++ "undefined"——如果这个值为定义
++ "boolean"——如果这个值是布尔值
++ "string"——如果这个值是字符串
++ "number"——如果这个值是数值
++ "object"——如果这个值是对象或null
++ "function"——如果这个值是函数
+调用typeof null会返回"object",因为特殊值null被认为是一个空的对象引用，typeof是操作符，不是函数
+
+# undefined
+undefined类型只有一个值，即特殊的undefined。在使用var声明变量但未对其他加以初始化时，这个变量的值就是undefined
+
+# Null类型
+Null类型只有一个值，即特殊的nul。null值表示一个空对象指针，所以typeof操作符检测null值时会返回"object"
+undefined是派生自null
+```javascript
+alert(null == undefined);//true
+```
+
+# Boolean
+各类型转换规则
+<table>
+    <thead>
+        <tr>
+            <td>数据类型</td>
+            <td>转换为true的值</td>
+            <td>转换为false的值</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Boolean</td>
+            <td>true</td>
+            <td>false</td>
+        </tr>
+        <tr>
+            <td>String</td>
+            <td>任何非空字符串</td>
+            <td>""(空字符串)</td>
+        </tr>
+        <tr>
+            <td>Number</td>
+            <td>任何非零数字值(包括无穷大)</td>
+            <td>0和NaN</td>
+        </tr>
+        <tr>
+            <td>Object</td>
+            <td>任何对象</td>
+            <td>null</td>
+        </tr>
+        <tr>
+            <td>undefined</td>
+            <td>不适用</td>
+            <td>undefined</td>
+        </tr>
+    </tbody>
+</table>
+
+# 字符串
+字符串的特点:字符串是不可变的，一旦创建，它们的值就不能改变。要改变某个变量保存的字符串，首先要销毁原来的字符串，然后再用另一个包含新值的字符串填充该变量
+
+# Object类型
+对象就是一组数据和功能的集合。对象可以通过执行new操作符后跟要创建的对象类型的名称来创建。而创建Object类型的实例并为其添加属性和方法，可以创建自定义对象。
+Object的每个实例都具有下列属性和方法
++ constructor:保存着用于创建当前对象的函数。
++ hasOwnProperty(propertyName):用于检查给定的属性在当前对象实例中(而不是在实例的原型中)是否存在。其中，作为参数的属性名(propertyName)必须以字符串形式制定
++ isPrototypeOf(object):用于检查传入对象是否是当前对象的原型
++ propertyIsEnumerable(propertyName):用于检查给定的属性是否能够用for-in语句来枚举
++ toLocaleString():返回对象字符串的表示,该字符串与执行环境的地区对应
++ toString():返回对象字符串表示。
++ valueOf():返回对象的字符串、数值或布尔值表示。通常与toString()方法的返回值相同
+
+# 复制变量值
+在从一个变量向另一个变量赋值基本类型的值，会在变量对象上创建一个新值，然后把该值复制到为新变量分配位置上
+```javascript
+var num1 = 5;
+var num2 = num1;
+```
+
+num1中保存的值时5。当使用num1的值来初始化num2时，num2也保存了值5。但num2中的5与num1中的5是完全独立的，该值只是num1中的5一个副本。此后，两个变量可以参与任何操作而互不影响。  
+复制前的变量对象
+
+
