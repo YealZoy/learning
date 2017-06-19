@@ -108,6 +108,87 @@ dc7729c HEAD@{2}: commit: 文件修改
 0ea7ddc HEAD@{4}: commit (initial): 添加文件
 ```
 
-# 工作区和暂存区
+# 撤销修改
+```
+郑玉燕@zyy MINGW64 /f/learngit (master)
+$ git checkout -- readme.txt
+```
+可以丢弃工作区的修改
+
+命令`git checkout -- readme.txt`意思就是,把`readme.txt`文件在工作区的修改全部撤销，有两种情况
++ 一种是`readme.txt`自修改后还没有被放到暂存区，现在撤销修改就回到和版本库一摸一样的状态
++ 一种是`readme.txt`已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态
+
+# 删除文件
+新建test.txt
+```
+郑玉燕@zyy MINGW64 /f/learngit (master)
+$ git add test.txt
+
+郑玉燕@zyy MINGW64 /f/learngit (master)
+$ git commit -m"test.txt文件添加"
+[master 041e604] test.txtt文件添加
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test.txt
+
+郑玉燕@zyy MINGW64 /f/learngit (master)
+$ rm test.txt
+
+郑玉燕@zyy MINGW64 /f/learngit (master)
+$ git checkout -- test.txt
+
+郑玉燕@zyy MINGW64 /f/learngit (master)
+$ git rm test.txt
+rm 'test.txt'
+```
+
+`rm test.txt`只删除工作区中的`test.txt`文件  
+
+在版本库文件没删除之前可以通过`git checkout -- test.txt`还原
+
+`git rm test.txt`版本库删除`test.txt`文件
+
+# 远程仓库
+github仓库
++ 创建SSH Key
+```
+$ ssh-keygen -t rsa -C "314186096@qq.com"
+```
+
++ 登陆github,打开“Account settings”，“SSH Keys”页面,然后点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容,点“Add Key”，你就应该看到已经添加的Key：
+
+## 添加远程仓库
++ 首先，登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库：在Repository name填入learngit，其他保持默认设置，点击“Create repository”按钮，就成功地创建了一个新的Git仓库：目前，在GitHub上的这个learngit仓库还是空的，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。
+```
+$ git remote add origin https://github.com/YealZoy/learngit.git
+```
+
+添加后，远程库的名字就是origin，这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库。
+
++ 把所有内容推送到远程库上
+```
+$ git push -u origin master
+Counting objects: 12, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (12/12), 1010 bytes | 0 bytes/s, done.
+Total 12 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), done.
+To https://github.com/YealZoy/learngit.git
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from origin.
+```
+
+## 从远程库克隆
++ 首先，登陆GitHub，创建一个新的仓库，名字叫gitskills：
++ 下一步是用命令git clone克隆一个本地库
+```
+$ git clone git@github.com:YealZoy/gitskills.git
+```
+
+# 分支管理
+
+
+
 
 
