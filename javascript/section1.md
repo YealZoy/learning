@@ -327,6 +327,7 @@ num1中保存的值时5。当使用num1的值来初始化num2时，num2也保存
     </tr>
 </table>
 
+
 # 引用类型
 ## object类型
 创建object有两种方式
@@ -391,3 +392,31 @@ join()方法，可传入一个参数，返回值为以传入参数的分隔符�
 
 ### 位置方法
 es5提供了两个位置方法,indexOf()和lastIndexOf()。这两个方法都接收了两个参数，要查找的项和（可选的）表示查找起点位置的索引。其中,indexOf()方法从数组的开头(位置0)开始向后查找，lastIndexOf()方法则从数组的末尾开始向前查找，这两个方法都返回要查找的项在数组中的位置，或者在没有找到的情况下返回-1。在比较第一个参数与数组中的每一项时，会使用全等操作符
+=======
+当一个变量向另一个变量复制引用类型的值时，同样也会将存在存储变量对象中的值复制一份放到为新变量分配的空间中。不同的是，这个值的副本实际上是一个指针，而这个指针指向存在堆中的一个对象。复制操作结束后，两个变量实际上将引用同一个对象。因此改变其中一个变量，就会影响另外一个变量  
+![](https://github.com/YealZoy/learning/blob/master/images/copy.jpg)
+
+# 传递参数
+所有函数的参数都是按值传递的。也就是说，把函数外部的值复制给函数内部的参数，就和把值从一个变量复制到另一个变量一样。
+```javascript
+function addTen(){
+    num += 10;
+    return num;
+}
+ var count = 20;
+ var result = addTen();
+ alert(count);//20
+ alert(result);//30
+
+//----------------------------
+function setName(obj){
+    obj.name = "Nicholas";
+}
+
+var person = new Object();
+setName(person);
+alert(person.name);//Nicholas
+```
+
+# 检测类型
+
