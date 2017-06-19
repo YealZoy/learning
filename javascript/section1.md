@@ -325,3 +325,33 @@ num1中保存的值时5。当使用num1的值来初始化num2时，num2也保存
         <td>5<br/>(Number类型)</td>
     </tr>
 </table>
+
+当一个变量向另一个变量复制引用类型的值时，同样也会将存在存储变量对象中的值复制一份放到为新变量分配的空间中。不同的是，这个值的副本实际上是一个指针，而这个指针指向存在堆中的一个对象。复制操作结束后，两个变量实际上将引用同一个对象。因此改变其中一个变量，就会影响另外一个变量  
+![](https://github.com/YealZoy/learning/blob/master/images/copy.jpg)
+
+# 传递参数
+所有函数的参数都是按值传递的。也就是说，把函数外部的值复制给函数内部的参数，就和把值从一个变量复制到另一个变量一样。
+```javascript
+function addTen(){
+    num += 10;
+    return num;
+}
+ var count = 20;
+ var result = addTen();
+ alert(count);//20
+ alert(result);//30
+
+//----------------------------
+function setName(obj){
+    obj.name = "Nicholas";
+}
+
+var person = new Object();
+setName(person);
+alert(person.name);//Nicholas
+```
+
+# 检测类型
+
+
+
