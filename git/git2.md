@@ -188,19 +188,19 @@ $ git clone git@github.com:YealZoy/gitskills.git
 
 # 分支管理
 在版本回退里，每次提交，Git把他们串成一条时间线，这条时间线就是一个分支。在Git里这个分支叫主分支，即`master`分支。`head`严格来说不是指向提交，而是指向`master`，而是`master`指向提交，。所以`head`指向的就是当前分支。  
-![图片来自阮一峰教程](https://github.com/YealZoy/learning/tree/master/images/git0.png)
+![图片来自阮一峰教程](https://github.com/YealZoy/learning/blob/master/images/git0.png)
 
 当创建新的分支，例如dev时，git创建了一个指针叫dev,指向`master`相同的提交，再把`head`指向`dev`，表示当前分支在`dev`上  
 
-![图片来自阮一峰教程](https://github.com/YealZoy/learning/tree/master/images/git1.png)  
+![图片来自阮一峰教程](https://github.com/YealZoy/learning/blob/master/images/git1.png)  
 
 不过现在开始，对工作区的修改和提交就是针对`dev`分支了，比如新提交一次后，`dev`指针往前移动一步，而`master`指针不变
-![图片来自阮一峰教程](https://github.com/YealZoy/learning/tree/master/images/git3.png)   
+![图片来自阮一峰教程](https://github.com/YealZoy/learning/blob/master/images/git3.png)   
 
 假如在`dev`上的工作完成了，就可以把`dev`合并到`master`上，就是直接把`master`指向`dev`的当前的提交，就完成了合并。
-![图片来自阮一峰教程](https://github.com/YealZoy/learning/tree/master/images/git4.png)  
+![图片来自阮一峰教程](https://github.com/YealZoy/learning/blob/master/images/git4.png)  
 合并完成分支后，甚至可以删除`dev`分支。删除`dev`分支就是把`dev`指针删掉，删掉后就剩下了一条`master`分支：
- ![图片来自阮一峰教程](https://github.com/YealZoy/learning/tree/master/images/git5.png) 
+ ![图片来自阮一峰教程](https://github.com/YealZoy/learning/blob/master/images/git5.png) 
 
 + 创建`dev`分支，然后切换到`dev`分支
 ```
@@ -300,7 +300,7 @@ $ git commit -m "& simple"
 ```
 
 现在，master分支和feature1分支各自都分别有新的提交，变成了这样：
-![图片来自阮一峰教程](https://github.com/YealZoy/learning/tree/master/images/git6.png) 
+![图片来自阮一峰教程](https://github.com/YealZoy/learning/blob/master/images/git6.png) 
 
 这种情况下，Git无法执行“快速合并”，只能试图把各自的修改合并起来，但这种合并就可能会有冲突
 ```
@@ -317,7 +317,7 @@ $ git commit -m "conflict fixed"
 [master 59bc1cb] conflict fixed
 ```
 现在，master分支和feature1分支变成了下图所示：
-![图片来自阮一峰教程](https://github.com/YealZoy/learning/tree/master/images/git7.png) 
+![图片来自阮一峰教程](https://github.com/YealZoy/learning/blob/master/images/git7.png) 
 
 ## 分支管理
 通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。
@@ -359,6 +359,5 @@ $ git merge --no-ff -m"merge with no-f" dev
 Merge made by the 'recursive' strategy.
  readme.txt | 1 +
  1 file changed, 1 insertion(+)
-
 ```
 因为本次合并要创建一个新的commit，所以加上-m参数，把commit描述写进去。
