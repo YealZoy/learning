@@ -55,8 +55,88 @@ git commit -m "init project version"
 # 记录每次更新到仓库
 工作目录下的每一个文件都不外乎两种状态:已跟踪或未跟踪。已跟踪的文件是指那些被纳入了版本控制的文件，在上一次快照中有它们的记录，在工作一段时间后，他们的状态可能出于未修改，已修改或已放入暂存区。工作目录中除已跟踪文件意外的所有其它文件都属于未跟踪文件，他们既不存在于上次快照的记录中，也没有放入暂存区。初次克隆某个仓库的时候，工作目录中的所有文件都属于已跟踪文件，并出于未修改状态。  
 编辑某些文件之后，由于自上次提交后对它们作了修改，Git将它们标记为以修改文件，逐步将这些修改过的文件放入暂存区，然后提交所有暂存了的修改，如此反复，git是文件的生命周期如下:
-![图片来自git-scm](https://github.com/YealZoy/learning/blob/master/images/lifecycle.png)  
+![图片来自git-scm](https://github.com/YealZoy/learning/blob/master/images/lifecycle.png) 
 
+# 检查当前文件状态
+要查看哪些文件处于什么状态，可以用`git status`命令。如果在克隆仓库后立即使用此命令，会看到类似这样的输出
+```
+$ git status
+On branch master
+nothing to commit, working directory clean
+```
+
+这说明现在的工作目录相当干净。所有已跟踪文件在上次提交后都未被更改过。此外，上见的信息还表明，当前目录下没有出现任何处于未跟踪状态的新文件，否则Git会在这里列出来。最后还显示了当前所在的分支，并说明这个分支同远程服务器上对应的分支没有偏离
+
+# 跟踪文件
+使用`git add`开始跟踪一个文件
+
+`git add README`
+
+在运行`git status`命令
+```
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    new file:   README
+```
+
+只要在 Changes to be committed 这行下面的，就说明是已暂存状态。`git add`命令使用文件
+
+# 暂存已修改文件
+如果修改了一个名为`CONTRIBUTING.md`的已被跟踪的文件，然后运行`git status`命令
+```
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    new file:   README
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+    modified:   CONTRIBUTING.md
+```
+
+文件 CONTRIBUTING.md 出现在 Changes not staged for commit 这行下面,说明已跟踪文件的内容发生了变化，但还没有放到暂存区，还能用于合并时把有冲突的文件标记为已解决状态等。
+
+```
+$ git add CONTRIBUTING.md
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    new file:   README
+    modified:   CONTRIBUTING.md
+```
+
+再次修改`CONTRIBUTING.md`,保存后运行`git status`
+
+```
+$ vim CONTRIBUTING.md
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    new file:   README
+    modified:   CONTRIBUTING.md
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+    modified:   CONTRIBUTING.md
+```
+
+`CONTRIBUTING.md`文件同时出现在暂存区和非暂存区。Git只不过暂存你运行`git add`命令时的那个版本，而不是你运行`git commit`时，在工作目录中的当前版本
+
+# 状态简览
+`git status`命令输出十分详细。可以用`git status -s`命令或`git status --short`命令，将得到一种更为紧凑的格式输出
 
 
 
