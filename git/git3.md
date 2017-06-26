@@ -162,7 +162,7 @@ $ cat .gitignore
 + 所有空行或者以`#`开头的行都会被Git忽略
 + 可以使用标准的glob模式匹配
 + 匹配模式可以以(`/`)开头防止递归
-+ 匹配模式可以以('/')结尾指定目录
++ 匹配模式可以以(`/`)结尾指定目录
 + 要忽略指定模式以外的文件或目录，可以在模式前加上(!)取反
 
 ```
@@ -185,6 +185,46 @@ doc/*.txt
 doc/**/*.pdf
 ```
 
+# 查看已暂存和未暂存的修改
+`git status`命令的输出有些模糊，如果想知道具体修改了什么地方,可以用`git diff`命令。
+再次修改`README`文件后暂存，然后编辑`CONTRIBUTING.md`文件后先不暂存，运行`status`命令
 
+```
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
 
+    modified:   README
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+    modified:   CONTRIBUTING.md
+```
+
+要查看尚未暂存的文件更新了哪些部分，不加参数直接输入`git diff`
+```
+$ git diff
+diff --git a/CONTRIBUTING.md b/CONTRIBUTING.md
+index 8ebb991..643e24f 100644
+--- a/CONTRIBUTING.md
++++ b/CONTRIBUTING.md
+@@ -65,7 +65,8 @@ branch directly, things can get messy.
+ Please include a nice description of your changes when you submit your PR;
+ if we have to read the whole diff to figure out why you're contributing
+ in the first place, you're less likely to get feedback and have your change
+-merged in.
++merged in. Also, split your changes into comprehensive chunks if your patch is
++longer than a dozen lines.
+
+ If you are starting to work on a particular area, feel free to submit a PR
+ that highlights your work in progress (and note in the PR title that it's
+```
+此命令比较的是工作目录中当前文件和暂存区域快照之间的差异， 也就是修改之后还没有暂存起来的变化内容。
+
+# 提交更新
+`git commit`
+这种方式会启动文本编辑器以便输入本次提交的说明。默认会启用shell的环境变量`$editer`所指定的软件，一般都是vim或emacs
 
