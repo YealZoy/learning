@@ -1,0 +1,59 @@
+# 关于版本控制
+版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统
+
+# 用户信息
+安装完git应该做的第一件事就是设置用户名与邮件地址,每一个Git提交都会使用这些信息,并且会写入到每一次提交中，不可更改：
+```
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com
+```
+如果使用了`--global`选项，该命令只需运行一次，因为之后再系统做任何事情，Git都会使用那些信息。当向针对特定项目使用不同的用户名与邮件地址时，可以在那个项目目录下运行没有`--global`选项的命令来配置
+
+# 检查配置信息
+`git config --list`命令会列出所有Git当时能找到的配置
+
+可以通过`git config <key>`检查Git的某一项配置
+```
+git config user.name
+```
+
+# 获取帮助
+有三种方法可以找到Git命令使用手册
+```
+git help <verb>
+git <verb> --help
+man git-<verb>
+```
+
+# 获取Git仓库
+有两种获取git项目仓库的方法。第一种事在现有项目或目录下导入所有文件到Git中;第二种是从服务器克隆一个现有的Git仓库
+
+## 在现有目录中初始化仓库
+只需进入该项目目录并输入
+```
+git init
+```
+
+该命令会创建一个名为`.git`的子目录，这个子目录含有你初始化的Git仓库中所有的必须文件，这些文件是Git仓库的骨干。但在这个时候，仅仅是做了一个初始化的操作。项目的文件还没有被跟踪
+
+如果是一个已经存在的文件的文件夹中初始化Git仓库进行版本控制的话，应该开始跟踪这些文件并提交。可以通过`git add`命令来实现对指定文件的跟踪，然后执行`git commit`提交
+```
+git add *.c
+git add LICENSE
+git commit -m "init project version"
+```
+
+## 克隆现有的仓库
+克隆仓库的命令格式是`git clone [url]`  
+
+`git clone https://github.com/libgit2/libgit2`  
+
+这会在当前目录下创建名为`libgit2`的目录，并在这个目录下初始化一个`.git`文件夹，从远程仓库拉取下所有放入`.git`文件夹，然后从中读取最新版本的文件的拷贝。如果想在克隆仓库的时候自定义本地仓库名字，可以使用如下命令:
+`$ git clone https://github.com/libgit2/libgit2 mylibgit`
+这将执行与上一个命令相同的操作，不过在本地创建的仓库名字变为 mylibgit。
+
+
+
+
+
+
