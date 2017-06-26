@@ -137,8 +137,24 @@ Changes not staged for commit:
 
 # 状态简览
 `git status`命令输出十分详细。可以用`git status -s`命令或`git status --short`命令，将得到一种更为紧凑的格式输出
+```
+$ git status -s
+ M README
+MM Rakefile
+A  lib/git.rb
+M  lib/simplegit.rb
+?? LICENSE.txt
+```
 
+新添加的未跟踪的文件前面有`??`标记，新添加到暂存区的文件前面有`A`标记，修改过的文件前面有`M`标记，有两个`M`标记出现的位置，右边的`M`表示该文件被修改了但是还没放入暂存区，出现在左边的`M`表示文件被修改了并放入暂存区。 `README`文件在工作区被修改了但是还没有将修改后的文件放入暂存区,`lib/simplegit.rb` 文件被修改了并将修改后的文件放入了暂存区。而`Rakefile` 在工作区被修改并提交到暂存区后又在工作区中被修改了
 
+# 忽略文件
+可以创建一个名为.gitignore的文件，列出要忽略的文件模式
+```
+$ cat .gitignore
+*.[oa]
+*~
+```
 
 
 
