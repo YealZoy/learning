@@ -228,3 +228,210 @@ index 8ebb991..643e24f 100644
 `git commit`
 这种方式会启动文本编辑器以便输入本次提交的说明。默认会启用shell的环境变量`$editer`所指定的软件，一般都是vim或emacs
 
+也可以在commit命令行后添加`-m`选项，将提交信息与命令放在同一行。
+```
+$ git commit -m "Story 182: Fix benchmarks for speed"
+[master 463dc4f] Story 182: Fix benchmarks for speed
+ 2 files changed, 2 insertions(+)
+ create mode 100644 README
+```
+
+# 跳过使用暂存区与
+尽管使用暂存区与德方式可以精心准备要提交的细节，但有时候这么做略显繁琐,Git提供了一个跳过使用暂存区域的方式，只要在提交的时候，给`git commit`加上`-a`选项，Git就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过`git add`步骤
+```
+$ git commit -a -m 'added new benchmarks'
+[master 83e38c7] added new benchmarks
+ 1 file changed, 5 insertions(+), 0 deletions(-)
+```
+
+# 移除文件
+要从Git中移除某个文件，就必须要从已经跟踪文件清单中移除，然后提交。可以用`git rm`命令完成此项工作，并连带从工作目录中删除指定的文件，这样以后就不会出现在未跟踪文件清单中了。
+
+如果只是简单地从工作目录中手工删除文件，运行`git status`时就会在“Changes not staged for commit” 部分（也就是 未暂存清单）看到：
+```
+$ rm PROJECTS.md
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        deleted:    PROJECTS.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+然后再运行`git rm`记录此次移除文件的操作
+```
+$ git rm PROJECTS.md
+rm 'PROJECTS.md'
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    deleted:    PROJECTS.md
+```
+下一次提交时，该文件就不再纳入版本管理了。如果删除之前修改过并且已经放到暂存区的话，则必须要用强制删除选项`-f`
+
+# 移动文件
+果在 Git 中重命名了某个文件，仓库中存储的元数据并不会体现出这是一次改名操作。要在git中重命名文件
+```
+git mv file_from file_to
+```
+
+```
+$ git mv README.md README
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    renamed:    README.md -> README
+```
+
+其实，运行`git mv`相当于运行了下面三条命令
+```
+$ mv README.md README
+$ git rm README.md
+$ git add README
+```
+
+# 查看提交历史
+`git log`
+默认不用任何参数的话，`git log`会提交时间列出所有的更新，最近的更新排在最上面。
+```
+$ git log
+commit ca82a6dff817ec66f44342007202690a93763949
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Mon Mar 17 21:52:11 2008 -0700
+
+    changed the version number
+
+commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Sat Mar 15 16:40:33 2008 -0700
+
+    removed unnecessary test
+
+commit a11bef06a3f659402fe7563abf99ad00de2209e6
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Sat Mar 15 10:31:28 2008 -0700
+
+    first commit
+```
+这个命令会列出每个提交的 SHA-1 校验和、作者的名字和电子邮件地址、提交时间以及提交说明
+
+一个常用的选项`-p`,用来显示每次提交的内容差异。也可以加上`-2`来显示最近两次提交
+```
+$ git log -p -2
+commit ca82a6dff817ec66f44342007202690a93763949
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Mon Mar 17 21:52:11 2008 -0700
+
+    changed the version number
+
+diff --git a/Rakefile b/Rakefile
+index a874b73..8f94139 100644
+--- a/Rakefile
++++ b/Rakefile
+@@ -5,7 +5,7 @@ require 'rake/gempackagetask'
+ spec = Gem::Specification.new do |s|
+     s.platform  =   Gem::Platform::RUBY
+     s.name      =   "simplegit"
+-    s.version   =   "0.1.0"
++    s.version   =   "0.1.1"
+     s.author    =   "Scott Chacon"
+     s.email     =   "schacon@gee-mail.com"
+     s.summary   =   "A simple gem for using Git in Ruby code."
+
+commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Sat Mar 15 16:40:33 2008 -0700
+
+    removed unnecessary test
+
+diff --git a/lib/simplegit.rb b/lib/simplegit.rb
+index a0a60ae..47c6340 100644
+--- a/lib/simplegit.rb
++++ b/lib/simplegit.rb
+@@ -18,8 +18,3 @@ class SimpleGit
+     end
+
+ end
+-
+-if $0 == __FILE__
+-  git = SimpleGit.new
+-  puts git.show
+-end
+\ No newline at end of file
+```
+
+也可以用`--stat`
+```
+$ git log --stat
+commit ca82a6dff817ec66f44342007202690a93763949
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Mon Mar 17 21:52:11 2008 -0700
+
+    changed the version number
+
+ Rakefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Sat Mar 15 16:40:33 2008 -0700
+
+    removed unnecessary test
+
+ lib/simplegit.rb | 5 -----
+ 1 file changed, 5 deletions(-)
+
+commit a11bef06a3f659402fe7563abf99ad00de2209e6
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Sat Mar 15 10:31:28 2008 -0700
+
+    first commit
+
+ README           |  6 ++++++
+ Rakefile         | 23 +++++++++++++++++++++++
+ lib/simplegit.rb | 25 +++++++++++++++++++++++++
+ 3 files changed, 54 insertions(+)
+```
+
+```
+$ git log --pretty=oneline
+ca82a6dff817ec66f44342007202690a93763949 changed the version number
+085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7 removed unnecessary test
+a11bef06a3f659402fe7563abf99ad00de2209e6 first commit
+```
+
+```
+$ git log --pretty=format:"%h - %an, %ar : %s"
+ca82a6d - Scott Chacon, 6 years ago : changed the version number
+085bb3b - Scott Chacon, 6 years ago : removed unnecessary test
+a11bef0 - Scott Chacon, 6 years ago : first commit
+```
+
+# 限制输出长度
+```
+$ git log --since=2.weeks
+```
+
+限制 git log 输出的选项
++ -(n)  仅显示最近的 n 条提交
++ --since, --after  仅显示指定时间之后的提交。
+
++ --until, --before 仅显示指定时间之前的提交。
+
++ --author   仅显示指定作者相关的提交。
+
++ --committer   仅显示指定提交者相关的提交。
+
++ --grep    仅显示含指定关键字的提交
+
++ -S   仅显示添加或移除了某个关键字的提交
+
+# 撤销操作
