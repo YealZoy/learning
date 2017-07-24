@@ -153,6 +153,49 @@ ROM(只读存储器) RAM(随机存储器)
     + 不能写入数据，只能包含逻辑分区
 + 逻辑分区
 
+## 格式化
+格式化（高级格式化）又称逻辑格式化，它是指根据用户选定的文件系统(如FAT16,FAT32,ATFS,EXT2,EXT3,EXT4等)，在磁盘的特定区域写入特定数据，在分区中划出一片用于存放文件分配表，目录表等用于文件管理侧磁盘空间
+
+# 硬件设备文件名
+<table>
+    <thead>
+        <tr>
+            <td>硬件</td>
+            <td>设备文件名</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>IDE硬盘</td>
+            <td>/dev/hd[a-d]</td>
+        </tr>
+        <tr>
+            <td>SCSI/SATA/USB硬盘</td>
+            <td>/dev/sd[a-p]</td>
+        </tr>
+        <tr>
+            <td>光驱</td>
+            <td>/dev/cdrom或/dev/hdc</td>
+        </tr>
+        <tr>
+            <td>打印机(25针)</td>
+            <td>/dev/fd[0-1]</td>
+        </tr>
+        <tr>
+            <td>打印机(USB)</td>
+            <td>/dev/lp[0-1]</td>
+        </tr>
+        <tr>
+            <td>鼠标</td>
+            <td>/dev/mouse</td>
+        </tr>
+    </tbody>
+</table>
+
+# 设备文件名
++ /dev/hda1(IDE硬盘接口) a第一块硬盘 1代表第一个分区
++ /dev/sda1(SCSI硬盘接口，SATA硬盘接口)
+
 
 
 
