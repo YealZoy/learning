@@ -336,10 +336,61 @@ ROM(只读存储器) RAM(随机存储器)
 + 删除原文件，软链接不能使用
 
 ![](../images/linux_link.jpg)
-    
-    
+  
+## 文件搜索
+### locate命令
++ `locate 文件名`:在后台数据库中按文件名搜索，搜索速度更快
++ `/var/lib/mlocate`:locate命令所搜索的后台数据库(更新频率一天一次)
++ `uodatedb`:更新数据库
+修改配置文件`/etc/updatedb.conf`
+![](../images/linux_locate.jpg)
 
+## 搜索命令的命令whereis与which
+`whereis 命令名`  只能搜索系统命令  
 
+搜索命令所在路径及帮助文档所在位置
+选项:
++ `-b`:只查找可执行文件
++ `-m`:只查找帮助文件
+
+`which 命令名`  
+搜索命令所在路径及别名
+
+### PATH环境变量
+定义的是系统搜索命令的路径
+
+### find命令
+`find [搜索范围] [搜索条件]`  
+`find / -name install.log`
+find是在系统当中搜索符合条件的文件名。如果需要匹配，使用通配符，通配符是完全匹配  
+
+linux中的通配符
++ `*`:匹配任意内容
++ `?`:匹配任意一个字符
++ `[]`:匹配任意一个中括号内的字符  
+
+`find /root -iname install.log` 不区分大小写  
+`find /root -user root` 按照所有者搜索  
+`find /root -nouser` 查找没有所有者的文件  
+
+`find /var/log/ -mtime +10` 查找10天前修改的文件
+`-10`:10天内修改的文件
+`10`:10天当前的修改的文件
+`+10`:10天前修改的文件
+
+`atime`:文件访问时间
+`ctime`:改变文件属性
+`mtime`:修改文件内容
+
+`find . -size 25k`  
+查找文件大小是25kB的文件
+
+`-25k`:小于等于25kB的文件  
+`25k`:等于25kB的文件
+`+25kB`:大于25kB的文件
+
+`find . -inum 262422`  
+查找i结点是262422的文件
 
 
 
