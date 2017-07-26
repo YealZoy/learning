@@ -531,3 +531,21 @@ shell内部命令帮助
 + `[root@localhost ~]# halt`
 + `[root@localhost ~]# poweroff`
 + `[root@localhost ~]# init 0`
+
+## 其他重启命令
++ `[root@localhost ~]# reboot`
++ `[root@localhost ~]# init 6`
+
+## 系统运行级别
++ 0:关机
++ 1:单用户
++ 2:不完全多用户，不含NFS服务
++ 3:完全多用户
++ 4:未分配
++ 5:图形界面
++ 6:重启
+
+`[root@localhost ~]# cat /etc/inittab`  
+修改
+
+
