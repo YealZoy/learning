@@ -463,5 +463,71 @@ shell内部命令帮助
 ## zip格式解压缩
 `unzip 压缩文件`
 
+## .gz格式压缩
+`gzip 原文件`  压缩为.gz格式的压缩文件，源文件会消失  
+`gzip -c 原文件 > 压缩文件` 压缩为.gz格式，原文件保留  
+`gzip -c zhengyuan > zhengyuyan.gz`  
+`gzip -r 目录` 压缩目录下所有的子文件，但是不能压缩目录
 
+## gz格式解压缩
+`gzip -d 压缩文件`  解压缩文件  
+`gunzip 压缩文件` 解压缩文件
 
+## bzip2格式压缩
+`bzip2 原文件`  压缩格式为.bz2格式，不保留原文件  
+`bzip2 -k 原文件`  压缩之后保留原文件  
+*bzip2命令不能压缩目录*
+
+## 打包命令tar
+`tar -cvf 打包文件名 原文件`  
+选项:
++ `-c`:打包
++ `-v`:显示过程
++ `-f`:指定打包后的文件名  
+`tar -cvf zyy.tar zyy`
+
+## 解打包命令
+`tar -xvf 打包文件名`  
+选项:
++ `-x`:解打包  
+`tar -xvf zyy.tar`
+
+## tar.gz压缩格式
++ tar.gz格式是先打包为.tar格式，再压缩为.gz格式
++ `tar -zcvf 压缩包名.tar.gz 原文件`  
+选项：  
+`-z`:压缩为.tar.gz格式
++ `tar -zxvf 压缩包名.tar.gz`
+选项:
++ `-x`:解压缩.tar.gz格式
+
+## tar.bz2压缩格式
++ `tar -jcvf 压缩包名.tar.bz2 原文件`  
+选项:
+`-j`:压缩为.tar.bz2格式
+
+## tar.bz2解压缩
+`tar -jxvf 压缩包名.tar.bz2 -C 解压缩位置`  
+选项:
+`-x`:解压缩.tar.bz2格式
+
+## 查看tar.gz
+`tar -ztvf 压缩文件.tar.gz`
+选项:  
+`-t`:查看
+
+# 关机和重启命令
+## shutdown命令
+`[root@locahost ~]# shutdown [选项] 时间`  
+选项:
++ `-c`:取消前一个关机命令
++ `-h`:关机
++ `-r`:重启
+
+`shutdown -r 05:30` 之后不能操作应改为后台运行`shutdown -r 05:30 & `
+`&`:后台运行
+
+## 其他关机命令
++ `[root@localhost ~]# halt`
++ `[root@localhost ~]# poweroff`
++ `[root@localhost ~]# init 0`
