@@ -9,10 +9,12 @@
 
 + git
     + [git操作](https://github.com/YealZoy/learning/blob/master/git/git.md)
-
+    + [git操作](https://github.com/YealZoy/learning/blob/master/git/git2.md)
+    + [git操作](https://github.com/YealZoy/learning/blob/master/git/git3.md)
+    
 + gulp
     + [gulp-api](https://github.com/YealZoy/learning/blob/master/gulp/gulp.md)
-
+    
 + yeoman
     + [yeoman-操作](https://github.com/YealZoy/learning/blob/master/yeoman/yeoman.md)
 
@@ -22,3 +24,27 @@
     + [section3](https://github.com/YealZoy/learning/blob/master/java/section3.md)
     + [section4](https://github.com/YealZoy/learning/blob/master/java/section4.md)
     + [section5](https://github.com/YealZoy/learning/blob/master/java/section5.md)
+
++ javascript
+    + [section1](https://github.com/YealZoy/learning/blob/master/javascript/section1.md)
+
++ linux
+    + [section1](https://github.com/YealZoy/learning/blob/master/linux/section1.md)
+
++ react
+    + [section1](https://github.com/YealZoy/learning/blob/master/react/section1.md)
+    
++ yeoman
+    + [yeoman](https://github.com/YealZoy/learning/blob/master/yeoman/yeoman.md)
+
+
+
+
+
+
+知识是在学习的时候做的笔记，里面的内容没有做整合。
+
+
+
+
+
