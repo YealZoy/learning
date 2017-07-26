@@ -34,8 +34,6 @@
 + react
     + [section1](https://github.com/YealZoy/learning/blob/master/react/section1.md)
     
-+ yeoman
-    + [yeoman](https://github.com/YealZoy/learning/blob/master/yeoman/yeoman.md)
 
 
 
