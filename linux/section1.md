@@ -545,7 +545,67 @@ shell内部命令帮助
 + 5:图形界面
 + 6:重启
 
-`[root@localhost ~]# cat /etc/inittab`  
-修改
+`[root@localhost ~]# cat /etc/inittab`  修改系统默认运行级别  
+`[root@localhost ~]# runlevel`  查询系统运行级别
+
+```
+[root@localhost ~]# runlevel
+N 3
+```
++ N:代表前一个level为null
++ 3:现在运行的级别为3
+
+系统默认运行级别  
+`cat /etc/inittab`  
+`id:3:initdefault:`
+
+# 退出登录命令
+`[root@localhost ~]# logout`
+
+# 其他常用命令
+## 挂载命令
+`[root@localhost ~]# mount`  查询系统中已经挂载的设备  
+`[root@localhost ~]# mount -a` 依据配置文件`/etc/fstab`的内容，自动挂载
+
+## 挂载命令格式
+`[root@localhost ~]# mount [-t 文件系统] [-o 特殊选项] 设备文件名 挂载点`  
+选项:
++ `-t文件系统`:加入文件系统类型来指定挂载的类型,可以ext3,ext4,iso9660等文件系统
++ `-o 特殊选项`:可以指定挂载的额外选项  
+![](../images/linuxguazai.jpg)  
+
+```
+[root@localhost ~]# mount -o remount,noexec /home 重新挂载/boot分区，并使用noexec权限
+```
+
+## 挂载光盘
++ `[root@localhost ~]# mkdir /mnt/cdrom` 建立挂载点
++ `[root@localhost ~]# mount -t iso9660 /dev/cdrom /mnt/cdrom`  挂载光盘
++ `[root@localhost ~]# mount /dev/sr0 /mnt/cdrom`
+(这块没有做实验，镜像?)
+
+## 卸载命令
+`[root@localhost ~]# umount 设备文件名或挂载点`  
+`[root@localhost ~]# umount /mnt/cdrom`
+
+## 挂载u盘
+`[root@localhost ~]# fdisk -l`  查看u盘设备文件名
+`[root@localhost ~]# mount -t vfat /dev/sbd1 /mnt/usb/`  
+linux默认是不支持NTFS文件
+
+## 用户登录和查看命令
+`w 用户名`  
+命令输出  
++ USER:登录的用户名
++ TIY:登录终端
++ FROM:从哪个ip地址登陆
++ LOGIN@:登录时间
++ IDEL:用户闲置时间
++ JCPU:指的是和该终端链接的所有进程占用的时间。这个时间里并不包括
+
+
+
+
+
 
 
