@@ -619,5 +619,113 @@ linux默认是不支持NTFS文件
 + 登录时间
 + 退出时间（在线时间）
 
+# lastlog命令:查看所有用户的最后一次登录时间  
+`lastlog`:命令默认是读取`/var/log/lastlog`  
+命令输出:
++ 用户名
++ 登录终端
++ 登录IP
++ 最后一次登录时间  
+
+# shell基础
++ shell是一个命令解释器，它为用户提供了一个像linux内核发送请求以便运行程序的界面系统级程序，用户可以用shell来启动，挂起，停止甚至是编写一些程序
++ shell还是一个功能强大的编程语言，易编写，易调试，灵活性较强。shell是解释执行的脚本，在shell中可以直接调用Linux系统命令。  
+
+# shell的分类
++ Bourne shell:主要有sh,ksh,Bash(Linux系统当中使用的),psh,zsh
++ c shell:c shell主要在BSD版的Unix系统中使用，其语法和C语言相类似而得名，主要包括csh,tcsh  
+
+# 查看本机的shell
+`echo $SHELL`
+
+查看系统有哪几种shell
+`vi /etc/shells`  
+```
+/bin/sh
+/bin/bash
+/sbin/nologin
+/usr/bin/sh
+/usr/bin/bash
+/usr/sbin/nologin
+```       
+切换shell
+```
+[root@localhost ~]# vi /etc/shells
+[root@localhost ~]# sh
+sh-4.2# exit
+exit
+[root@localhost ~]# 
+```
+
+# 脚本执行方式
+## echo输出命令
+`echo [选项] [输出内容]`  
+选项:
++ `-e`:支持反斜杠控制的字符转换  
+![](../images/linuxzy.png)  
+
+输出颜色
+```
+[root@localhost ~]# echo -e "\e[1;31m我是郑玉燕\e[0m "
+我是郑玉燕 
+```
++ `\e`:转义
++ `[1:31m`:表示颜色开启开始
++ `[0m`:表示颜色开启结束
+![](../images/linuxecho.png)
+
+# 脚本执行
++ 赋予执行权限，直接运行
+ `chmod 755 hello.sh`  
+ `./hello.sh`
+ 
+ +通过Bash调用执行脚本
+ `bash hello.sh`
+ 
+```
+[root@localhost ~]# vim hello.sh
+[root@localhost ~]# chmod 755 hello.sh
+[root@localhost ~]# ./hello.sh
+我是郑玉燕
+[root@localhost ~]# bash hello.sh
+我是郑玉燕
+[root@localhost ~]# 
+```
+
+# bash基本功能
+## 命令别名与快捷键
+查看与设定别名
++ `alias`:查看系统中所有的命令别名
++ `alias 别名='原命令'`:设定命令别名
+别名永久生效与删除别名
++ `vi ~/.bashrc`:写入环境变量配置文件(重新登录)或者`source ~/.bashrc`
++ `unalias 别名`:删除别名
+命令生效顺序
++ 1、用绝对路径或相对路径执行的命令
++ 2、执行别名
++ 3、执行bash的内部命令
++ 4、按照$PATH环境变量定义的目录查看第一个命令
+![](../images/linuxkjj.png)
+## 历史命令
+`history [选项] [历史命令保存文件]`  
+选项:
++ `-c`:清空历史命令
++ `-w`:把缓存中的历史命令写入历史命令保存文件`~/.bash_history`
+
+历史命令默认会保存1000行，可以在环境变量配置文件`/etc/profile`中进行修改  
+历史命令的调用
++ 使用上下箭头用以前的历史命令
++ 使用`!n`重复执行第n跳历史命令
++ 使用`!!`重复执行上一条命令
++ 使用`!子串`重复执行最后一条以该字串开头的命令
+
+命令与文件补全
++ 在bash中，命令与文件补全，只要在输入命令或文件时，按`tab`键就会自动补全
+
+## 输出重定向
+## 多命令顺序执行
+## shell中特殊符号
+
+
 
 
